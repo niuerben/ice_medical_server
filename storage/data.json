@@ -1,0 +1,29 @@
+[
+    {"id": "001", "name": "阿莫西林", "category": "抗生素", "price": "25.5", "stock": "100"},
+    {"id": "002", "name": "头孢克肟", "category": "抗生素", "price": "32.0", "stock": "80"},
+    {"id": "003", "name": "左氧氟沙星", "category": "抗生素", "price": "40.0", "stock": "60"},
+    {"id": "004", "name": "克拉霉素", "category": "抗生素", "price": "28.5", "stock": "90"},
+    {"id": "005", "name": "青霉素V钾片", "category": "抗生素", "price": "22.0", "stock": "110"},
+    {"id": "006", "name": "罗红霉素", "category": "抗生素", "price": "35.0", "stock": "70"},
+
+    {"id": "007", "name": "维生素C", "category": "维生素", "price": "12.0", "stock": "200"},
+    {"id": "008", "name": "维生素B1", "category": "维生素", "price": "10.0", "stock": "180"},
+    {"id": "009", "name": "维生素D3", "category": "维生素", "price": "15.0", "stock": "160"},
+    {"id": "010", "name": "维生素E", "category": "维生素", "price": "20.0", "stock": "140"},
+    {"id": "011", "name": "维生素B6", "category": "维生素", "price": "13.0", "stock": "170"},
+    {"id": "012", "name": "叶酸片", "category": "维生素", "price": "18.0", "stock": "150"},
+
+    {"id": "013", "name": "感冒灵颗粒", "category": "感冒药", "price": "18.0", "stock": "150"},
+    {"id": "014", "name": "复方氨酚烷胺片", "category": "感冒药", "price": "22.0", "stock": "120"},
+    {"id": "015", "name": "小儿氨酚黄那敏颗粒", "category": "感冒药", "price": "16.0", "stock": "110"},
+    {"id": "016", "name": "板蓝根颗粒", "category": "感冒药", "price": "14.0", "stock": "130"},
+    {"id": "017", "name": "日夜百服咛", "category": "感冒药", "price": "19.0", "stock": "100"},
+    {"id": "018", "name": "快克感冒胶囊", "category": "感冒药", "price": "21.0", "stock": "90"},
+
+    {"id": "019", "name": "阿司匹林", "category": "心血管", "price": "30.0", "stock": "80"},
+    {"id": "020", "name": "硝酸甘油", "category": "心血管", "price": "35.0", "stock": "70"},
+    {"id": "021", "name": "美托洛尔", "category": "心血管", "price": "38.0", "stock": "60"},
+    {"id": "022", "name": "氯吡格雷", "category": "心血管", "price": "45.0", "stock": "50"},
+    {"id": "023", "name": "厄贝沙坦", "category": "心血管", "price": "42.0", "stock": "55"},
+    {"id": "024", "name": "缬沙坦", "category": "心血管", "price": "39.0", "stock": "65"}
+]
