@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "username": "zjl",
+      "passwordHash": "750c297849857b864e9e408239f960bc19cf70a5e93cb36d87f429b972c7e951"
+    },
+    {
+      "username": "zz",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd5f8b5e5e8e9e5a5c5"
+    },
+    {
+      "username": "test",
+      "passwordHash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+    },
+    {
+      "username": "test1",
+      "passwordHash": "8bd2a2d6e18774586909be919ec6ae37b84ef9de8c7501bbe416aec9ece38023"
+    }]
+}
