@@ -1,0 +1,9 @@
+[
+    {"orderID": "ORD0001", "username": "zjl", "orderTime": "2025:12:28:15:56:00", 
+    "items": [
+        {"id": "001", "name": "阿莫西林", "category": "抗生素", "price": "25.5", "quantity": 2},
+        {"id": "007", "name": "维生素C", "category": "维生素", "price": "12.0", "quantity": 1}
+    ],
+    "totalPrice": 63.0, "status": "已完成"
+    }
+]

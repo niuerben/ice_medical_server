@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
-import java.util.List;
+
 
 public class ServerReaderThread extends Thread {
     private Socket clientSocket;
@@ -23,7 +23,7 @@ public class ServerReaderThread extends Thread {
             DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
             int type = dis.readInt();
             switch (type) {
-                case 1: // Login
+                case 1: // 登录
                     String loginMsg = dis.readUTF();
                     String[] loginParts = loginMsg.split("\n");
                     boolean isAuthenticated = false;
@@ -36,7 +36,7 @@ public class ServerReaderThread extends Thread {
                     dosLogin.writeBoolean(isAuthenticated);
                     dosLogin.flush();
                     break;
-                case 2: // Register
+                case 2: // 注册账号
                     String regMsg = dis.readUTF();
                     String[] regParts = regMsg.split("\n");
                     boolean isRegistered = false;
@@ -49,7 +49,7 @@ public class ServerReaderThread extends Thread {
                     dosReg.writeBoolean(isRegistered);
                     dosReg.flush();
                     break;
-                case 3: // Get Data
+                case 3: // 获取药品列表数据
                     try { dis.readUTF(); } catch (Exception e) {} 
                     
                     BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
@@ -65,6 +65,27 @@ public class ServerReaderThread extends Thread {
                     out.newLine();
                     out.flush();
                     break;
+                case 4: // 输入订单数据
+                    String orderJson = dis.readUTF();
+                    boolean saveResult = saveOrder(orderJson);
+                    DataOutputStream dosOrder = new DataOutputStream(clientSocket.getOutputStream());
+                    dosOrder.writeBoolean(saveResult);
+                    dosOrder.flush();
+                    break;
+                case 5: // 获取订单数据
+                    String queryUser = dis.readUTF();
+                    System.out.println("来自用户: " + queryUser + " 的订单数据请求");
+                    Path orderFilePath = Paths.get(Constant.ORDER_JSON_FILE);
+                    boolean orderExists = Files.exists(orderFilePath);
+                    DataOutputStream dosQuery = new DataOutputStream(clientSocket.getOutputStream());
+                    dosQuery.writeBoolean(orderExists);
+                    if (orderExists) {
+                        dosQuery.write("\n".getBytes("UTF-8"));
+                        byte[] orderContent = Files.readAllBytes(orderFilePath);
+                        dosQuery.write(orderContent);
+                    }
+                    dosQuery.flush();
+                    break;
                 default:
                     break;
             }
@@ -75,6 +96,37 @@ public class ServerReaderThread extends Thread {
     }
 
 
+
+    private boolean saveOrder(String orderJson) {
+        try {
+            Path filePath = Paths.get(Constant.ORDER_JSON_FILE);
+            if (!Files.exists(filePath)) {
+                if (filePath.getParent() != null) {
+                    Files.createDirectories(filePath.getParent());
+                }
+                String content = "[\n" + orderJson + "\n]";
+                Files.write(filePath, content.getBytes("UTF-8"));
+                return true;
+            }
+
+            String content = new String(Files.readAllBytes(filePath), "UTF-8").trim();
+            if (content.endsWith("]")) {
+                content = content.substring(0, content.lastIndexOf("]"));
+            }
+            
+            if (content.trim().endsWith("}")) {
+                content += ",\n";
+            }
+            
+            content += orderJson + "\n]";
+            
+            Files.write(filePath, content.getBytes("UTF-8"));
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     private boolean checkUser(String username, String password) {
         try {
